@@ -1,0 +1,23 @@
+{
+    'name': 'Kenya School Bus App',
+    'version': '1.0',
+    'sequence': -100,
+    'summary': 'School bus management system',
+    'description': 'An efficient school bus management system with real-time tracking of buses, route optimization, and attendance management.',
+    'author': 'James Mweni',
+    'category': 'Extra Tools',
+    'depends': ['web'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/ksba_school_views.xml',
+        'views/ksba_bus_views.xml',
+        'views/ksba_route_views.xml',
+        'views/ksba_stop_views.xml',
+        'views/ksba_attendance_record_views.xml',
+        'views/ksba_bus_location_views.xml',
+    ],
+    'demo': [],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

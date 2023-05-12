@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+
+        <!-- Security groups for parent -->
+        <record model="res.groups" id="group_ksba_parent">
+            <field name="name">Parent</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.public_user'))]"/>
+        </record>
+
+        <!-- Security groups for driver -->
+        <record model="res.groups" id="group_ksba_driver">
+            <field name="name">Driver</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.public_user'))]"/>
+        </record>
+
+        <!-- Security groups for administrator -->
+        <record model="res.groups" id="group_ksba_administrator">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.public_user'))]"/>
+        </record>
+
+        <!-- Access control rules for parent -->
+        <record model="ir.rule" id="ksba_parent_rule">
+            <field name="name">Parent rule</field>
+            <field name="model_id" ref="model_ksba_school"/>
+            <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('group_ksba_parent'))]"/>
+        </record>
+
+        <!-- Access control rules for driver -->
+        <record model="ir.rule" id="ksba_driver_rule">
+            <field name="name">Driver rule</field>
+            <field name="model_id" ref="model_ksba_bus"/>
+            <field name="domain_force">[('driver_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('group_ksba_driver'))]"/>
+        </record>
+
+        <!-- Access control rules for administrator -->
+        <record model="ir.rule" id="ksba_administrator_rule">
+            <field name="name">Administrator rule</field>
+            <field name="model_id" ref="model_ksba_route"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('group_ksba_administrator'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <!-- Bus Form View -->
+        <record id="ksba_bus_form_view" model="ir.ui.view">
+            <field name="name">ksba.bus.form</field>
+            <field name="model">ksba.bus</field>
+            <field name="arch" type="xml">
+                <form string="Bus Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="school_id"/>
+                            <field name="driver_id"/>
+                            <field name="capacity"/>
+                            <field name="model"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Bus Tree View -->
+        <record id="ksba_bus_tree_view" model="ir.ui.view">
+            <field name="name">ksba.bus.tree</field>
+            <field name="model">ksba.bus</field>
+            <field name="arch" type="xml">
+                <tree string="Bus Tree">
+                    <field name="name"/>
+                    <field name="school_id"/>
+                    <field name="driver_id"/>
+                    <field name="capacity"/>
+                    <field name="model"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Bus Kanban View -->
+        <record id="ksba_bus_kanban_view" model="ir.ui.view">
+            <field name="name">ksba.bus.kanban</field>
+            <field name="model">ksba.bus</field>
+            <field name="arch" type="xml">
+                <kanban string="Bus Kanban">
+                    <field name="name"/>
+                    <field name="school_id"/>
+                    <field name="driver_id"/>
+                    <field name="capacity"/>
+                    <field name="model"/>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>
