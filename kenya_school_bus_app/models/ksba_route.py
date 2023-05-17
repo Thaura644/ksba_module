@@ -5,15 +5,15 @@ from lxml import etree
 class KsbaRoute(models.Model):
     _name = 'ksba.route'
     _description = 'Route'
-    _inherit = 'ksba.school'
+    # _inherit = 'res.patner'
 
-    #fields definition
+
     name = fields.Char(required=True)
     school_id = fields.Many2one('ksba.school', string='School', required=True)
     school = fields.Many2one('ksba.school', string='School', required=True)
     stops = fields.Many2many('ksba.stop', string='Stops')
     buses = fields.One2many('ksba.bus', 'route', string='Buses')
-    escription = fields.Text(string='Description')
+    description = fields.Text(string='Description')
     start_location = fields.Char(string='Start Location')
     end_location = fields.Char(string='End Location')
     distance = fields.Float(string='Distance')

@@ -48,5 +48,19 @@
                 </kanban>
             </field>
         </record>
+
+          <record model="ir.actions.act_window" id="ksba_bus_action">
+        <field name="name">Bus</field>
+        <field name="res_model">ksba.bus</field>
+<!--        <field name="view_mode">form</field>-->
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="ksba_bus_menuitem" name="Bus" parent="ksba_menu" sequence="20"/>
+    <menuitem id="ksba_bus_menuitem_form" name="Bus" parent="ksba_bus_menuitem" action="ksba_bus_action"
+              sequence="10"/>
+
+
     </data>
 </odoo>
