@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-kenya_school_bus_app.access_ksba_school, access_ksba_school,kenya_school_bus_app.model_ksba_school,base.group_user,1,1,1,1
-kenya_school_bus_app.access_ksba_bus, access_ksba_bus,kenya_school_bus_app.model_ksba_bus,base.group_user,1,1,1,1
-kenya_school_bus_app.access_ksba_route, access_ksba_route,kenya_school_bus_app.model_ksba_route,base.group_user,1,1,1,1
-

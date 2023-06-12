@@ -71,26 +71,13 @@
             <field name="model">ksba.school</field>
             <field name="arch" type="xml">
                 <search string="Kenya School Bus App - School">
-                    <field name='name'/>
-                    <field name='address'/>
-                    <field name='email'/>
-                    <field name='phone'/>
+                    <field name = 'name'/>
+                    <field name = 'address'/>
+                    <field name = 'email'/>
+                    <field name = 'phone'/>
                 </search>
             </field>
         </record>
-
-          <record model="ir.actions.act_window" id="ksba_school_action">
-        <field name="name">School</field>
-        <field name="res_model">ksba.school</field>
-<!--        <field name="view_mode">form</field>-->
-        <field name="view_mode">tree,form,kanban</field>
-    </record>
-
-    <!-- Menuitem -->
-    <menuitem id="ksba_school_menuitem" name="School" parent="ksba_menu" sequence="20"/>
-    <menuitem id="ksba_school_menuitem_form" name="School" parent="ksba_school_menuitem" action="ksba_school_action"
-              sequence="10"/>
-
 
     </data>
 </odoo>

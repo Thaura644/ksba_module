@@ -2,7 +2,7 @@
 <odoo>
 
     <menuitem id="ksba_menu"
-              name="KSBA"
+              name="ksba"
               sequence = "10"
     />
 
