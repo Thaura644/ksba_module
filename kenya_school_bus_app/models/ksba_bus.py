@@ -5,17 +5,16 @@ class KsbaBus(models.Model):
     _description = 'Bus'
     _inherit = 'res.partner'
 
-    name = fields.Char(required=True)
+    plate_number = fields.Char(required=True)
     school_id = fields.Many2one('ksba.school', string='School', required=True)
-    driver_id = fields.Many2one('res.partner', string='Driver')
-    assistant_id = fields.Many2one('res.partner', string='Assistant')
-    capacity = fields.Integer()
-    number_plate = fields.Char()
-    model = fields.Char()
-    registration_number = fields.Char()
-    school = fields.Many2one('ksba.school', string='School', required=True)
-    route = fields.Many2one('ksba.route', string='Route')
-    driver = fields.Many2one('res.partner', string='Driver', domain="[('is_driver','=',True)]")
-    students = fields.Many2many('res.partner', string='Students', domain="[('is_student','=',True)]")
+    driver_id = fields.Many2one('ksba.patners', string='Driver')
+    capacity = fields.Integer(required=True)
+    route = fields.Many2many('ksba.route', string='Route')
     bus_locations = fields.One2many('ksba.bus.location', 'bus', string='Bus locations')
-    school_id = fields.Many2one('ksba.school', string='School')
+    current_location = fields.Char()
+    child_ids = fields.One2many(
+        comodel_name='ksba.partners',
+        inverse_name='bus_id',
+        string='Children'
+    )
+    stop_ids = fields.Many2one('ksba.stop',string="Stops")

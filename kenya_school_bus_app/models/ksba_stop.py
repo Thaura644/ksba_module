@@ -6,9 +6,8 @@ class KsbaStop(models.Model):
     # _inherit = 'ksba.route'
 
     name = fields.Char(required=True)
-    route_id = fields.Many2one('ksba.route', string='Route', required=True)
+    route_ids = fields.Many2many('ksba.route','stop_ids',string='Route', required=True)
     sequence =  fields.Integer()
     latitude = fields.Float()
     longitude = fields.Float()
-    route = fields.Many2many('ksba.route', string='Routes')
-    buses = fields.Many2many('ksba.bus', string='Buses')
+    bus = fields.One2many('ksba.bus','stop_ids', string='Buses')

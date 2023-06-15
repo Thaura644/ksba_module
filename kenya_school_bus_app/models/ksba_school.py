@@ -32,8 +32,8 @@ class KsbaSchool(models.Model):
         'res.partner'
         'ksba.school', string='School'
     )
-    students = fields.One2many('ksba.school', 'school_id', string='Students')
-    buses = fields.One2many('ksba.bus', 'school_id', string='Buses')
+    students = fields.One2many('ksba.partners', 'child_id', string='Students')
+    buses_id = fields.One2many('ksba.bus', 'school_id', string='Buses')
     website = fields.Char()
 
 
