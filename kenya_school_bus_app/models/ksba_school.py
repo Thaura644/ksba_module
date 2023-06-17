@@ -4,14 +4,6 @@ from odoo import models, fields
 class KsbaSchool(models.Model):
     _name = 'ksba.school'
     _description = 'School'
-    _inherit = 'res.partner'
-
-    is_parent = fields.Boolean(string="Is Parent")
-    is_driver = fields.Boolean(string="Is Driver")
-    is_administrator = fields.Boolean(string="Is Administrator")
-
-    parent_id = fields.Many2one('res.partner', string="Parent")
-    child_ids = fields.One2many('res.partner', 'parent_id', string="Children")
 
     # def __init__(self, pool, cr):
     #     """ Update defaults for role fields """
@@ -28,17 +20,10 @@ class KsbaSchool(models.Model):
     address = fields.Char(string='Address')
     email = fields.Char(string='Email')
     phone = fields.Char(string='Phone')
-    school_id = fields.Many2one(
-        'res.partner'
-        'ksba.school', string='School'
-    )
-    students = fields.One2many('ksba.partners', 'child_id', string='Students')
+    students = fields.One2many('ksba.child', 'school_id', string='Students')
     buses_id = fields.One2many('ksba.bus', 'school_id', string='Buses')
+    attendance_ids = fields.One2many('ksba.attendance', 'school_id', string='Attendance')
     website = fields.Char()
-
-
-
-    def _compute_model_id(self):
-        for record in self:
-            model = self.env['ir.model'].search([('model', '=', 'ksba.school')])
-            record.model_id = model.id
+    driver_ids=fields.One2many('ksba.driver',"school_id", string="Drivers")
+    administrator_ids = fields.One2many('ksba.administrator','school_id', string="Administrators")
+    

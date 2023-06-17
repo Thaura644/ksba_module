@@ -6,15 +6,17 @@
             <field name="model">ksba.bus</field>
             <field name="arch" type="xml">
                 <form string="Bus Form">
-                    <sheet>
                         <group>
-                            <field name="name"/>
+                             
                             <field name="school_id"/>
                             <field name="driver_id"/>
                             <field name="capacity"/>
-                            <field name="model"/>
+                            <field name="bus_locations"/>   
+                            <field name="current_location"/>
+                            <field name="child_ids"/>
+                            <field name="stop_ids"/>
                         </group>
-                    </sheet>
+                    
                 </form>
             </field>
         </record>
@@ -25,27 +27,15 @@
             <field name="model">ksba.bus</field>
             <field name="arch" type="xml">
                 <tree string="Bus Tree">
-                    <field name="name"/>
-                    <field name="school_id"/>
-                    <field name="driver_id"/>
-                    <field name="capacity"/>
-                    <field name="model"/>
+                             
+                            <field name="school_id"/>
+                            <field name="driver_id"/>
+                            <field name="capacity"/>
+                            <field name="bus_locations"/>   
+                            <field name="current_location"/>
+                            <field name="child_ids"/>
+                            <field name="stop_ids"/>
                 </tree>
-            </field>
-        </record>
-
-        <!-- Bus Kanban View -->
-        <record id="ksba_bus_kanban_view" model="ir.ui.view">
-            <field name="name">ksba.bus.kanban</field>
-            <field name="model">ksba.bus</field>
-            <field name="arch" type="xml">
-                <kanban string="Bus Kanban">
-                    <field name="name"/>
-                    <field name="school_id"/>
-                    <field name="driver_id"/>
-                    <field name="capacity"/>
-                    <field name="model"/>
-                </kanban>
             </field>
         </record>
 
@@ -53,7 +43,7 @@
         <field name="name">Bus</field>
         <field name="res_model">ksba.bus</field>
 <!--        <field name="view_mode">form</field>-->
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menuitem -->

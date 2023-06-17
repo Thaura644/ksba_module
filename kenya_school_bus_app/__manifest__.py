@@ -8,13 +8,13 @@
     'category': 'Extra Tools',
     'depends': ['web'],
     'data': [
-        'security/security.xml',
+   
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/ksba_school_views.xml',
         'views/ksba_bus_views.xml',
         'views/ksba_route_views.xml',
-        'controllers/main.py'
+       
         # 'views/ksba_stop_views.xml',
         # 'views/ksba_attendance_record_views.xml',
         # 'views/ksba_bus_location_views.xml',
