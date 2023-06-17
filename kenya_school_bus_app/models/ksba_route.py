@@ -7,7 +7,6 @@ class KsbaRoute(models.Model):
     _description = 'Route'
 
     name = fields.Char(required=True)
-    school_id = fields.Many2one('ksba.school', string='School', required=True)
     stop_ids = fields.Many2many('ksba.stop','route_ids' ,string='Stops')
     buses = fields.Many2many('ksba.bus', 'route', string='Buses')
     description = fields.Text(string='Description')
