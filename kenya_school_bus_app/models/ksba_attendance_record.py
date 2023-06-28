@@ -9,5 +9,5 @@ class KsbaAttendanceRecord(models.Model):
     stop = fields.Many2one('ksba.stop', string='Stop', required=True)
     date = fields.Date(default=fields.Date.today())
     school_id = fields.Many2one('ksba.school', string='School')
-    child_id = fields.Many2one('ksba.patners',string="Student")
-    present =fields.Boolean(string="Present")
+    child_id = fields.Many2one('ksba.child',string="Student")
+    seat_number = fields.Integer(required=True)    

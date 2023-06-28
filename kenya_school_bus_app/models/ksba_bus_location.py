@@ -6,5 +6,5 @@ class KsbaBusLocation(models.Model):
     # _inherit = 'res.partner'
     #
     bus = fields.Many2one('ksba.bus', string='Bus', required=True)
-    location = fields.Char()
+    location = fields.Float(string="location", required=True)
     date_time = fields.Datetime(default=fields.Datetime.now())

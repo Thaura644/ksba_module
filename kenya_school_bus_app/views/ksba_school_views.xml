@@ -5,9 +5,7 @@
             <field name="name">ksba.school.form</field>
             <field name="model">ksba.school</field>
             <field name="arch" type="xml">
-                <form string="Kenya School Bus App - School">
-                    <sheet>
-                        <group>
+                <form>                        <group>
                             <field name="name"/>
                             <field name="address"/>
                             <field name="email"/>
@@ -15,24 +13,22 @@
                         </group>
                         <notebook>
                             <page string="Students">
-                                <field name="students" mode="kanban">
-                                    <kanban>
-                                        <field name="name"/>
-                                        <field name="email"/>
-                                        <field name="phone"/>
-                                    </kanban>
+                                <field name="students">
+                                    <tree>
+                                        <field name="firstname"/>
+                                        <field name="lastname"/>
+                                        <field name="home_location"/>
+                                    </tree>
                                 </field>
                             </page>
                             <page string="Buses">
-                                <field name="buses" mode="kanban">
-                                    <kanban>
-                                        <field name="name"/>
-                                        <field name="number_plate"/>
-                                    </kanban>
+                                <field name="buses_id">
+                                    <tree>
+                                        <field name="plate_number"/>
+                                    </tree>
                                 </field>
                             </page>
                         </notebook>
-                    </sheet>
                 </form>
             </field>
         </record>
@@ -42,7 +38,7 @@
             <field name="name">ksba.school.tree</field>
             <field name="model">ksba.school</field>
             <field name="arch" type="xml">
-                <tree string="Kenya School Bus App - School">
+                <tree >
                     <field name="name"/>
                     <field name="address"/>
                     <field name="email"/>
@@ -51,39 +47,11 @@
             </field>
         </record>
 
-        <!-- Kanban view -->
-        <record id="ksba_school_kanban_view" model="ir.ui.view">
-            <field name="name">ksba.school.kanban</field>
-            <field name="model">ksba.school</field>
-            <field name="arch" type="xml">
-                <kanban class="oe_background_grey">
-                    <field name="name"/>
-                    <field name="address"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                </kanban>
-            </field>
-        </record>
-
-        <!-- Search view -->
-        <record id="ksba_school_search_view" model="ir.ui.view">
-            <field name="name">ksba.school.search</field>
-            <field name="model">ksba.school</field>
-            <field name="arch" type="xml">
-                <search string="Kenya School Bus App - School">
-                    <field name='name'/>
-                    <field name='address'/>
-                    <field name='email'/>
-                    <field name='phone'/>
-                </search>
-            </field>
-        </record>
-
           <record model="ir.actions.act_window" id="ksba_school_action">
         <field name="name">School</field>
         <field name="res_model">ksba.school</field>
 <!--        <field name="view_mode">form</field>-->
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menuitem -->
