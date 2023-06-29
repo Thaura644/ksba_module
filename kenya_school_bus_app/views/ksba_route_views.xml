@@ -7,19 +7,16 @@
         <field name="model">ksba.route</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <!--                <field name="bus_id"/>-->
-                <field name="description"/>
-                <field name="stops"/>
-                <field name="start_location"/>
-                <field name="end_location"/>
-                <field name="distance"/>
-                <field name="school_id"/>
-                <field name="duration"/>
-                <field name="school"/>
-                <field name="distance"/>
-                <field name="active"/>
-                <field name="buses"/>
+                        <field name="name"/>
+                        <!--                <field name="bus_id"/>-->
+                        <field name="description"/>
+                        <field name="stop_ids"/>
+                        <field name="start_location_latitude"/>
+                        <field name="start_location_longitude"/>
+                        <field name="end_location_latitude"/>
+                        <field name="end_location_longitude"/>
+                        <field name="distance"/>
+                        <field name="bus_ids"/>
             </tree>
         </field>
     </record>
@@ -40,20 +37,17 @@
                         <field name="name"/>
                         <!--                <field name="bus_id"/>-->
                         <field name="description"/>
-                        <field name="stops"/>
-                        <field name="start_location"/>
-                        <field name="end_location"/>
+                        <field name="stop_ids"/>
+                        <field name="start_location_latitude"/>
+                        <field name="start_location_longitude"/>
+                        <field name="end_location_latitude"/>
+                        <field name="end_location_longitude"/>
                         <field name="distance"/>
-                        <field name="school_id"/>
-                        <field name="duration"/>
-                        <field name="school"/>
-                        <field name="distance"/>
-                        <field name="active"/>
-                        <field name="buses"/>
+                        <field name="bus_ids"/>
                     </group>
                     <notebook>
-                        <page string="Stops">
-                            <field name="stops" widget="many2many_tags"/>
+                        <page string="stop_ids">
+                            <field name="stop_ids" widget="many2many_tags"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -61,58 +55,16 @@
         </field>
     </record>
 
-    <!-- Kanban View -->
-    <record id="ksba_route_kanban_view" model="ir.ui.view">
-        <field name="name">ksba.route.kanban</field>
-        <field name="model">ksba.route</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <field name="name"/>
-                <!--                <field name="bus_id"/>-->
-                <field name="description"/>
-                <field name="stops"/>
-                <field name="start_location"/>
-                <field name="end_location"/>
-                <field name="distance"/>
-                <field name="school_id"/>
-                <field name="duration"/>
-                <field name="school"/>
-                <field name="distance"/>
-                <field name="active"/>
-                <field name="buses"/>
-            </kanban>
-        </field>
-    </record>
+  
 
-    <!-- Search View -->
-    <record model="ir.ui.view" id="ksba_route_search_view">
-        <field name="name">ksba.route.search</field>
-        <field name="model">ksba.route</field>
-        <field name="arch" type="xml">
-            <search>
-                 <field name="name"/>
-<!--                <field name="bus_id"/>-->
-                <field name="description"/>
-                <field name="stops"/>
-                <field name="start_location"/>
-                <field name="end_location"/>
-                <field name="distance"/>
-                <field name="school_id"/>
-                <field name="duration"/>
-                <field name="school"/>
-                <field name="distance"/>
-                <field name="active"/>
-                <field name="buses"/>
-            </search>
-        </field>
-    </record>
+
 
     <!-- Action -->
     <record model="ir.actions.act_window" id="ksba_route_action">
         <field name="name">Routes</field>
         <field name="res_model">ksba.route</field>
 <!--        <field name="view_mode">form</field>-->
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menuitem -->

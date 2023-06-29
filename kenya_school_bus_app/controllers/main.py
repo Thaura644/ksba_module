@@ -1,56 +1,139 @@
 from odoo import http
 from odoo.http import request
-
-        
+import json
+'''def action_launch(self):
+user_id = self.env["res.users"].create(
+            {"login": self.employee_id.work_email, "name": self.employee_id.name}
+        )
+self.employee_id.update({'user_id': user_id.id})'''
 class Session(http.Controller):
     @http.route("/login",type='http',auth="none")
     def login(self,db,email,password,base_location=None):
-            request.session.authenticate(db,email,password)
-            request.env['ir.httP'].session_info()
-            
-class User(http.Controller):
-    @http.route('/create_user', type='http', auth='public', website=True)
-    def create_user(self, **post):
-        user = request.env.user
-        role = post.get('role')
-        if user.role in ['administrator']:
-            if role in ['parent', 'driver', 'administrator']:
-                partner_data = {
-                    'name': post.get('name'),
-                    'role': role,
-                    'email': post.get('email'),
-                    'phone': post.get('phone'),
-                    'school':int(post.get('school')), 
-                }
-                partner = request.env['res.partner'].create(partner_data)
-                return "User created successfully!"
-            else:
-                return "Invalid role provided!"
+        request.session.authenticate(db,email,password)
+        session = http.request.session
+        session_info = request.env['ir.http'].session_info()
+        user = request.env.user 
+        # Include the user details in the response
+        response_data = [{
+            'id':user.id,
+            'name': user.name,
+        }]
+        response = http.Response(json.dumps(response_data), content_type='application/json')
+
+        return response
+
+    @http.route('/userdetails',type='http',auth='none')
+    def get_user_details(self,db):
+        session_id = http.request.httprequest.headers.get('X-Session-ID')
+        session = http.request.session
+        authenticated = session.authenticate(db,session_id)
+
+        if authenticated:
+            user = session.env.user
+            response_data = {
+                'id': user.id,
+                'name': user.name,
+                'email': user.email,
+            }            
+            return http.Response(response_data, content_type='application/json', status=200)
         else:
-            return "Access denied! You need administrator privileges to create a partner."
-    
-    @http.route('/signup', type='http', auth='public', website=True, methods=['POST'])
-    def signup_process(self, **kwargs):
-        name = kwargs.get('name')
-        email = kwargs.get('email')
-        role = kwargs.get('role')
-        password = kwargs.get('password')
-        user = request.env['res.users'].sudo().create({
-        'name': name,
-        'login': email,
-        'email': email,
-        'role': role,
-        'password': password
-        })
-        partner = request.env['res.partner'].sudo().create({
-            'name': name,
-            'email': email,
-            'user_id': user.id
-        })
+            return http.Response("Authentication Failed", content_type='text/plain', status=401)    
+class UserController(http.Controller):
+    @http.route('/getschools', type='http',auth='public')
+    def get_schools(self):
+        schools_rec= request.env['ksba.school'].search([])
+        schools = []
+        for rec in schools_rec:
+            vals ={
+                'id': rec.id,
+                'name': rec.name,
+            }
+            schools.append(vals)
+        data = {'status':200,'response':schools,'message':"success"}
+        return http.Response(json.dumps(data), content_type='application/json', status=200)
+        
+    @http.route('/register', type='http', auth='none')
+    def user_registration(self,email,password,role,firstname,lastname,school_id,adm_no=None,phone=None):
+        User = request.env['res.users']
+        Partner = request.env['ksba.partners']
+        Parent = request.env['ksba.parent']
+        Child = request.env['ksba.child']
+        Administrator = request.env['ksba.administrator']
+        Driver = request.env['ksba.driver']
+        # Check if user already exists with the given email
+        
+        if email:
+            existing_user = User.sudo().search([('email', '=', email)])
+            if existing_user:
+                return "User with this email already exists."
+                
+        if adm_no:
+            existing_student = User.sudo().search([('admission_no', '=', adm_no)])
+            if existing_student:
+                return "Student already exists."
+        if role in ['administrator','driver','parent','child']:
+            if role == 'administrator':
+                partner = Partner.sudo().create({'name': firstname+" "+lastname,'email': email,'role': 'administrator'})
+                partner_id=partner.id
+                administrator_id = Administrator.sudo().create({
+                            firstname: firstname,
+                            lastname: lastname,
+                            phone: phone,
+                            administrator_role_ids: [(0, 0, {'partner_id': partner_id})],
+                            school_id: int(school_id)
+                        })
+                user = User.sudo().create({
+                            'name': firstname+" "+lastname,
+                            'login': email,
+                            'email': email,
+                            'password': password,
+                            'partner_id':patner_id})
+            elif role=='child':
+                patner_id = Partner.sudo().create({
+                        'name':   firstname+" "+lastname,
+                        'role':  'child',
+                    }).id
+                child = Child.sudo().create({
+                        firstname : firstname,
+                        lastname : lastname,
+                        home_location : home_location,
+                        child_role_id : patner_id,
+                        school_id:int(school_id),
+                        adm_no : adm_no,
+                    })
 
-        return "Sign up successfully"
-
-
+                user = User.sudo().create({
+                    'name': firstname+" "+lastname,
+                    'login': adm_no,
+                    'email': adm_no,
+                    'password': password,
+                    'partner_id':patner_id}) 
+                
+            elif role =='parent':
+                partner_id = Partner.sudo().create({
+                        'name':  firstname+" "+lastname,
+                        'role':  'parent',
+                    }).id
+                child = Parent.sudo().create({
+                        firstname : firstname,
+                        lastname : lastname,
+                        home_location : home_location,
+                        parent_role_id : partner_id,
+                      
+                        children_ids : child_id,
+                    })
+                user = User.sudo().create({
+                    'name': firstname+" "+lastname,
+                    'login': adm_no,
+                    'email': adm_no,
+                    'password': password,
+                    'partner_id':partner_id}) 
+                    
+            if user:
+                return "User registered successfully."
+            else:
+                return "Failed to register user."
+        
 class BusController(http.Controller):
     @http.route('/bus_data', type='http', auth='user')
     def get_bus_data(self, bus_number=None, **kwargs):
@@ -77,7 +160,7 @@ class BusController(http.Controller):
         if user.role in ['administrator']:
             bus_data = {
                 'plate_number': post.get('bus_name'),
-                'school_id': int(post.get('school_id')),
+                'school_id': int(post.get(' ')),
                 'capacity': int(post.get('capacity')),
                 'route': int(post.get('route')),          
             }

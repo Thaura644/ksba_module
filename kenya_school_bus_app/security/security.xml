@@ -1,85 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-<!--         Security Groups-->
+    <data noupdate="0">
+        <!-- Creating Security Groups -->
         <record id="group_parent" model="res.groups">
             <field name="name">Parent</field>
+            <field name="category_id" ref="module_category_name"/>
         </record>
 
         <record id="group_driver" model="res.groups">
             <field name="name">Driver</field>
+            <field name="category_id" ref="module_category_name"/>
         </record>
 
-        <record id="group_administrator" model="res.groups">
+        <record id="group_admin" model="res.groups">
             <field name="name">Administrator</field>
+            <field name="category_id" ref="module_category_name"/>
         </record>
 
-        <record id="access_ksba_school" model="ir.model.access">
-            <field name="name">Access KSBA School</field>
+        <!-- Defining Access Control Rules -->
+        <record id="model_ksba_school_parent_rule" model="ir.model.access">
+            <field name="name">ksba.school access for parents</field>
             <field name="model_id" ref="model_ksba_school"/>
-            <field name="group_id" ref="group_administrator"/>
+            <field name="group_id" ref="group_parent"/>
             <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
         </record>
 
-        <record id="access_ksba_bus" model="ir.model.access">
-            <field name="name">Access KSBA Bus</field>
-            <field name="model_id" ref="model_ksba_bus"/>
-            <field name="group_id" ref="group_administrator"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-        <record id="access_ksba_route" model="ir.model.access">
-            <field name="name">Access KSBA Route</field>
-            <field name="model_id" ref="model_ksba_route"/>
-            <field name="group_id" ref="group_administrator"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-        <record id="access_ksba_stop" model="ir.model.access">
-            <field name="name">Access KSBA Stop</field>
-            <field name="model_id" ref="model_ksba_stop"/>
-            <field name="group_id" ref="group_administrator"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-        <record id="access_ksba_attendance_record" model="ir.model.access">
-            <field name="name">Access KSBA Attendance Record</field>
-            <field name="model_id" ref="model_ksba_attendance_record"/>
-            <field name="group_id" ref="group_administrator"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-        <record id="access_ksba_bus_location" model="ir.model.access">
-            <field name="name">Access KSBA Bus Location</field>
-            <field name="model_id" ref="model_ksba_bus_location"/>
-            <field name="group_id" ref="group_administrator"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-        </record>
-
-        <!-- Assigning Security Groups -->
-<!--        <record id="ksba_school_group_parent" model="res.groups">-->
-<!--            <field name="users" eval="[(4, ref('base.group_user'))]"/>-->
-<!--        </record>-->
-<!--        <record id="ksba_school_group_driver" model="res.groups">-->
-<!--            <field name="users" eval="[(4, ref('base.group_user'))]"/>-->
-<!--        </record>-->
-<!--        <record id="ksba_school_group_administrator" model="res.groups">-->
-<!--            <field name="users" eval="[(4, ref('base.group_user'))]"/>-->
-<!--        </record>-->
-
-    </data>
+        <!-- Repeat above record for each model and user role, adjusting permissions accordingly -->
+    </data>
 </odoo>
