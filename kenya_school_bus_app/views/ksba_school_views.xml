@@ -21,27 +21,6 @@
                                     </tree>
                                 </field>
                             </page>
-                              <page string="Administrators">
-                                <field name="administrator_ids">
-                                    <tree>
-                                        <field name="firstname"/>
-                                        <field name="lastname"/>
-                                        <field name="phone"/>
-
-                                    </tree>
-                                </field>
-                            </page>
-                         <page string="Drivers">
-                                <field name="driver_ids">
-                                    <tree>
-                                        <field name="firstname"/>
-                                        <field name="lastname"/>
-                                        <field name="home_location"/>
-                                        <field name="phone"/>
-                                        
-                                    </tree>
-                                </field>
-                            </page>
                             <page string="Buses">
                                 <field name="buses_id">
                                     <tree>
@@ -71,7 +50,7 @@
           <record model="ir.actions.act_window" id="ksba_school_action">
         <field name="name">School</field>
         <field name="res_model">ksba.school</field>
-<!--        <field name="view_mode">form</field>-->
+       <field name="view_mode">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 

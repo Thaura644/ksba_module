@@ -3,7 +3,17 @@ from odoo import models, fields, api
 
 class Partner(models.Model):
     _name="ksba.partners"
+    _description = "Partners"
     _inherit = 'res.partner'
+
+
+    channel_ids = fields.Many2many(
+        comodel_name='ksba.channels',
+        relation='ksba_partners_channels_rel',
+        column1='partner_id',
+        column2='channel_id',
+        string='Channels'
+    )
 
     role = fields.Selection(
         selection=[
@@ -11,7 +21,7 @@ class Partner(models.Model):
             ('driver', 'Driver'),
             ('administrator', 'Administrator')
         ],
-        string='Role',
+        string='role',
         default='parent'
     )
 

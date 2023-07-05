@@ -1,1 +1,1 @@
-from . import ksba_bus, ksba_route, ksba_bus_location, ksba_attendance_record, ksba_stop, ksba_school,ksba_partner,ksba_driver,ksba_parent,ksba_child,ksba_administrator
+from . import ksba_bus, ksba_route, ksba_bus_location, ksba_attendance_record, ksba_stop, ksba_school,ksba_partners,ksba_driver,ksba_parent,ksba_child,ksba_administrator

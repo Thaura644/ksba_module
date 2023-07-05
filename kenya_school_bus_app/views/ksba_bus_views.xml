@@ -11,10 +11,8 @@
                             <field name="school_id"/>
                             <field name="driver_id"/>
                             <field name="capacity"/>
-                             <field name="plate_number"/>  
                             <field name="bus_locations"/>   
-                            <field name="current_location_latitude"/>
-                            <field name="current_location_longitude"/>
+                            <field name="current_location"/>
                             <field name="child_ids"/>
                             <field name="stop_ids"/>
                         </group>
@@ -33,10 +31,8 @@
                             <field name="school_id"/>
                             <field name="driver_id"/>
                             <field name="capacity"/>
-                            <field name="plate_number"/>
                             <field name="bus_locations"/>   
-                            <field name="current_location_latitude"/>
-                            <field name="current_location_longitude"/>
+                            <field name="current_location"/>
                             <field name="child_ids"/>
                             <field name="stop_ids"/>
                 </tree>
@@ -46,7 +42,7 @@
           <record model="ir.actions.act_window" id="ksba_bus_action">
         <field name="name">Bus</field>
         <field name="res_model">ksba.bus</field>
-<!--        <field name="view_mode">form</field>-->
+       <field name="view_mode">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 

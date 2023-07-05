@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="ir_cron_update_latitude" model="ir.cron">
+            <field name="name">Update Latitude of Stops</field>
+            <field name="model_id" ref="model_ksba_stop"/>
+            <field name="state">code</field>
+            <field name="code">model._update_latitude()</field>
+            <field name="interval_number">5</field>  <!-- Update interval -->
+            <field name="interval_type">seconds</field>  <!-- Interval type -->
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>
