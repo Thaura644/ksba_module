@@ -83,3 +83,10 @@
 
     </data>
 </odoo>
+
+
+<!-- #kenya_school_bus_app.access_ksba_stop, access_ksba_stop, kenya_school_bus_app.access_ksba_stop, base.group_user, 1,1,1,1
+#kenya_school_bus_app.access_ksba_child, access_ksba_child, kenya_school_bus_app.access_ksba_child, base.group_user, 1,1,1,1
+#kenya_school_bus_app.access_ksba_partners, access_ksba_partners, kenya_school_bus_app.access_ksba_partners, base.group_user, 1,1,1,1
+
+ -->

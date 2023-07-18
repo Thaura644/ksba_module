@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="create_user_form" inherit_id="web.external_layout">
+        <xpath expr="//div[@class='container']" position="inside">
+            <div class="oe_login_form">
+                <h2>Create User</h2>
+                <form class="oe_form_container" method="post">
+                    <div class="oe_login_form_input">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required="True"/>
+                    </div>
+                    <div class="oe_login_form_input">
+                        <label for="role">Role:</label>
+                        <select id="role" name="role" required="True">
+                            <option value="parent">Parent</option>
+                            <option value="driver">Driver</option>
+                            <option value="administrator">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="oe_login_form_input">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required="True"/>
+                    </div>
+                    <div class="oe_login_form_input">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" required="True"/>
+                    </div>
+                    <div class="oe_login_form_input">
+                        <label for="school">School:</label>
+                        <input type="text" id="school" name="school" required="True"/>
+                    </div>
+                    <div class="oe_login_form_input">
+                        <input type="submit" value="Create User"/>
+                    </div>
+                </form>
+            </div>
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/kenya_school_bus_app/static/src/css/create_user_form.css"/>
+        </xpath>
+    </template>
+</odoo>

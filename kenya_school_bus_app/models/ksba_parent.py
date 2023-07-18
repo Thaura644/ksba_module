@@ -9,5 +9,4 @@ class KsbaParents(models.Model):
     phone=  fields.Integer(required=True)
     parent_role_id= fields.One2many('ksba.partners','parent_ids',string="Parent")
     children_ids=fields.Many2one('ksba.child',string="Parent")
-    
-    
+   

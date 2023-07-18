@@ -1,0 +1,10 @@
+<record id="view_ksba_bus_location_form" model="ir.ui.view">
+    <field name="name">ksba.bus.location.form</field>
+    <field name="model">ksba.bus.location</field>
+    <field name="inherit_id" ref="module_name.view_existing_form_or_tree_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='bus_locations']" position="after">
+            <field name="map_url" widget="image" options="{'zoom_control': true}"/>
+        </xpath>
+    </field>
+</record>

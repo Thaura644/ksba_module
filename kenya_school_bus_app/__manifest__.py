@@ -10,9 +10,10 @@
     'data': [
    
         'security/ir.model.access.csv',
-        'views/data.xml'
+        'views/data.xml',
         'views/menu.xml',
         'views/ksba_school_views.xml',
+        'views/create_user_form.xml',
         'views/ksba_bus_views.xml',
         'views/ksba_route_views.xml',
         'views/ksba_stop_views.xml',
